@@ -20,13 +20,6 @@ import bookapp.composeapp.generated.resources.compose_multiplatform
 @Preview
 fun App() {
     MaterialTheme {
-        var clicked by remember { mutableStateOf(false) }
-        var showContent by remember { mutableStateOf(false) }
-        Column {
-            Text(if (clicked) "clicked" else "not clicked")
-            Button(onClick = { clicked = !clicked }) {
-                Text("click me ")
-            }
-        }
+
     }
 }
