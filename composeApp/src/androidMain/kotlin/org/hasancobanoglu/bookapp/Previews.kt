@@ -12,7 +12,7 @@ import org.hasancobanoglu.bookapp.presentation.book_list.components.BookSearchBa
 private fun BookSearchBarPreview() {
     MaterialTheme {
         BookSearchBar(
-            "",
+            "android",
             {},
             {},
             modifier = Modifier.fillMaxWidth()

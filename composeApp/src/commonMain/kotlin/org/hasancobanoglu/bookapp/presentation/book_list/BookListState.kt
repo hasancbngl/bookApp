@@ -4,7 +4,7 @@ import org.hasancobanoglu.bookapp.domain.Book
 import org.hasancobanoglu.core.presentation.UiText
 
 data class BookListState(
-    val searchQuery: String = "Kotlin",
+    val searchQuery: String = "",
     val searchResult: List<Book> = emptyList(),
     val isLoading: Boolean = false,
     val favoriteBooks: List<Book> = emptyList(),
