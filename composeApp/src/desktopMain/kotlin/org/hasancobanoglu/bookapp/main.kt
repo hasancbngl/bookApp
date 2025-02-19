@@ -2,8 +2,8 @@ package org.hasancobanoglu.bookapp
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import org.hasancobanoglu.bookapp.app.App
 import org.hasancobanoglu.di.initKoin
-import org.koin.core.context.startKoin
 
 fun main() {
     initKoin()
