@@ -2,12 +2,17 @@ package org.hasancobanoglu.bookapp
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import org.hasancobanoglu.di.initKoin
+import org.koin.core.context.startKoin
 
-fun main() = application {
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "Book App",
-    ) {
-        App()
+fun main() {
+    initKoin()
+    application {
+        Window(
+            onCloseRequest = ::exitApplication,
+            title = "Book App",
+        ) {
+            App()
+        }
     }
 }

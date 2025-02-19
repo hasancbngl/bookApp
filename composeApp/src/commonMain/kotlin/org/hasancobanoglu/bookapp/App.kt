@@ -3,6 +3,7 @@ package org.hasancobanoglu.bookapp
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import io.ktor.client.engine.HttpClientEngine
 import org.hasancobanoglu.bookapp.data.network.KtorRemoteBookDataSource
 import org.hasancobanoglu.bookapp.data.network.RemoteBookDataSource
 import org.hasancobanoglu.bookapp.data.repository.BookRepository
@@ -14,14 +15,14 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun App() {
+fun App(engine: HttpClientEngine) {
     MaterialTheme {
         BookListScreenRoot(
             viewModel = remember {
                 BookListViewModel(
                     repository = BookRepository(
                         remoteBookDataSource = KtorRemoteBookDataSource(
-                            HttpClientFactory.create()
+                            HttpClientFactory.create(engine)
                         )
                     )
                 )
