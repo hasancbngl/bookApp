@@ -5,8 +5,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -16,6 +18,9 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import org.hasancobanoglu.bookapp.presentation.SharedViewModel
+import org.hasancobanoglu.bookapp.presentation.book_detail.BookDetailAction
+import org.hasancobanoglu.bookapp.presentation.book_detail.BookDetailRoot
+import org.hasancobanoglu.bookapp.presentation.book_detail.BookDetailViewModel
 import org.hasancobanoglu.bookapp.presentation.book_list.BookListScreenRoot
 import org.hasancobanoglu.bookapp.presentation.book_list.BookListViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -50,7 +55,21 @@ fun App() {
                 }
                 composable<Route.BookDetail> {
                     val sharedViewModel = it.sharedViewModel<SharedViewModel>(navController)
+                    val viewModel = koinViewModel<BookDetailViewModel>()
+                    val selectedBook by sharedViewModel.selectedBook.collectAsStateWithLifecycle()
 
+                    LaunchedEffect(selectedBook) {
+                        selectedBook?.let {
+                            viewModel.onAction(BookDetailAction.OnSelectedBookChange(it))
+                        }
+                    }
+
+                    BookDetailRoot(
+                        viewModel = viewModel,
+                        onBackClick = {
+                            navController.navigateUp()
+                        }
+                    )
                 }
             }
         }
