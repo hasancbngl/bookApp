@@ -5,6 +5,7 @@ import org.hasancobanoglu.bookapp.data.network.RemoteBookDataSource
 import org.hasancobanoglu.bookapp.data.repository.BookRepository
 import org.hasancobanoglu.bookapp.domain.AppRepository
 import org.hasancobanoglu.bookapp.presentation.book_list.BookListViewModel
+import org.hasancobanoglu.bookapp.presentation.SharedViewModel
 import org.hasancobanoglu.core.data.HttpClientFactory
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -20,4 +21,5 @@ val sharedModule = module {
     singleOf(::BookRepository).bind<AppRepository>()
 
     viewModelOf(::BookListViewModel)
+    viewModelOf(::SharedViewModel)
 }
